@@ -8,7 +8,11 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/appbuilder" />
+            <option value="$PROJECT_DIR$/baselib" />
+            <option value="$PROJECT_DIR$/hometab" />
+            <option value="$PROJECT_DIR$/user" />
+            <option value="$PROJECT_DIR$/video" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

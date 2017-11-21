@@ -1,9 +1,21 @@
+gradle.properties
+
+# Local files
+local.properties
+
+# Gradle files
+.gradle/
+build/
+gradle/
+gradlew
+gradlew.bat
+
+# IntelliJ files
+.idea/
+.navigation/
+captures/
 *.iml
-.gradle
-/local.properties
-/.idea/workspace.xml
-/.idea/libraries
+
+# OS X files
+._*
 .DS_Store
-/build
-/captures
-.externalNativeBuild
