@@ -23,7 +23,6 @@ import butterknife.BindView;
  * 【首页】
  *
  * @author zch
- * @version 1.0.0
  * @since 2017-11-22
  */
 public class HomeFragment extends BaseAppFragment {

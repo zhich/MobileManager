@@ -13,7 +13,6 @@ import butterknife.ButterKnife;
  * FragmentActivity 基类
  *
  * @author zch
- * @version 1.0.0
  * @since 2017-11-22
  */
 public abstract class BaseAppFragmentActivity extends BaseFragmentActivity {

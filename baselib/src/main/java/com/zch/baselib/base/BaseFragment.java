@@ -17,7 +17,6 @@ import android.view.ViewGroup;
  * Fragment 的基类，与业务逻辑无关
  *
  * @author zch
- * @version 1.0.0
  * @since 2017-11-22
  */
 public abstract class BaseFragment extends Fragment {

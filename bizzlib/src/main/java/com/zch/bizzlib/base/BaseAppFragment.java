@@ -13,7 +13,6 @@ import butterknife.ButterKnife;
  * description
  *
  * @author zch
- * @version 1.0.0
  * @since 2017-11-22
  */
 public abstract class BaseAppFragment extends BaseFragment {

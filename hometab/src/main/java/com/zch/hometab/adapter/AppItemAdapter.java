@@ -18,7 +18,6 @@ import java.util.List;
  * 应用项适配器
  *
  * @author zch
- * @version 1.0.0
  * @since 2017-11-22
  */
 public class AppItemAdapter extends BaseQuickAdapter<AppItem, BaseViewHolder> {

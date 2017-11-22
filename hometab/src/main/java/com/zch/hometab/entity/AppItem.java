@@ -9,7 +9,6 @@ package com.zch.hometab.entity;
  * 应用项
  *
  * @author zch
- * @version 1.0.0
  * @since 2017-11-22
  */
 public class AppItem {

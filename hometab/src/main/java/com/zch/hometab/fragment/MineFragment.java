@@ -12,7 +12,6 @@ import com.zch.hometab.R;
  * 【我】界面
  *
  * @author zch
- * @version 1.0.0
  * @since 2017-11-22
  */
 public class MineFragment extends BaseAppFragment {
