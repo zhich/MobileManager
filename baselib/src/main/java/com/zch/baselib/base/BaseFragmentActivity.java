@@ -1,25 +1,26 @@
 /*
- * BaseActivity      2017-11-22
- * Copyright © gnt All Rights Reserved.
- *
- */
+  * BaseFragmentActivity      2017-11-22
+  * Copyright (c) 2017 zch. All right reserved.
+  *
+  */
 package com.zch.baselib.base;
 
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 import android.view.Window;
 
 import org.greenrobot.eventbus.EventBus;
 
 /**
- * AppCompatActivity 基类，与业务逻辑无关
+ * FragmentActivity 基类，与业务逻辑无关
  *
  * @author zch
+ * @version 1.0.0
  * @since 2017-11-22
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseFragmentActivity extends FragmentActivity {
 
     protected Context mContext;
 
@@ -46,17 +47,17 @@ public abstract class BaseActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE); // 取消标题栏
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EventBus.getDefault().unregister(this);
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        EventBus.getDefault().register(this);
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        EventBus.getDefault().unregister(this);
+//    }
 
     protected abstract int getLayoutResource();
 

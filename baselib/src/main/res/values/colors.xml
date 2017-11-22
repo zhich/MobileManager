@@ -7,9 +7,11 @@
     <!-- CheckBox，RadioButton，SwitchCompat 等一般控件的选中效果默认采用该颜色 -->
     <color name="base_colorAccent">#5571f6</color>
 
-    <color name="theme_color">#3983FE</color>
+    <color name="color_theme">#3983FE</color>
 
     <color name="color_000000">#000000</color>
     <color name="color_ffffff">#ffffff</color>
     <color name="color_dddddd">#dddddd</color>
+    <color name="color_cccccc">#cccccc</color>
+    <color name="color_444444">#444444</color>
 </resources>

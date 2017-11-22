@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottomTab_ll_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0.4"
+        android:background="@color/color_cccccc" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottomTab_height"
+        android:background="@color/color_ffffff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/bottomTab_rl_home"
+            style="@style/layout_horizontal"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_3">
+
+            <ImageView
+                android:id="@+id/bottomTab_iv_home"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/bottomTab_img_height"
+                android:layout_centerHorizontal="true"
+                android:background="@color/color_ffffff"
+                android:focusable="false"
+                android:scaleType="centerInside"
+                android:src="@drawable/selector_tab_home" />
+
+            <TextView
+                android:id="@+id/bottomTab_tv_home"
+                style="@style/layout_wrap"
+                android:layout_below="@id/bottomTab_iv_home"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_1"
+                android:text="@string/home"
+                android:textColor="@color/color_444444"
+                android:textSize="@dimen/small_font_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/bottomTab_rl_news"
+            style="@style/layout_horizontal"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_3">
+
+            <ImageView
+                android:id="@+id/bottomTab_iv_news"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/bottomTab_img_height"
+                android:layout_centerHorizontal="true"
+                android:background="@color/color_ffffff"
+                android:focusable="false"
+                android:scaleType="centerInside"
+                android:src="@drawable/selector_tab_news" />
+
+            <TextView
+                android:id="@+id/bottomTab_tv_news"
+                style="@style/layout_wrap"
+                android:layout_below="@id/bottomTab_iv_news"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_1"
+                android:text="@string/news"
+                android:textColor="@color/color_444444"
+                android:textSize="@dimen/small_font_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/bottomTab_rl_girl"
+            style="@style/layout_horizontal"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_3">
+
+            <ImageView
+                android:id="@+id/bottomTab_iv_girl"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/bottomTab_img_height"
+                android:layout_centerHorizontal="true"
+                android:background="@color/color_ffffff"
+                android:focusable="false"
+                android:scaleType="centerInside"
+                android:src="@drawable/selector_tab_girl" />
+
+            <TextView
+                android:id="@+id/bottomTab_tv_girl"
+                style="@style/layout_wrap"
+                android:layout_below="@id/bottomTab_iv_girl"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_1"
+                android:text="@string/girl"
+                android:textColor="@color/color_444444"
+                android:textSize="@dimen/small_font_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/bottomTab_rl_mine"
+            style="@style/layout_horizontal"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_3">
+
+            <ImageView
+                android:id="@+id/bottomTab_iv_mine"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/bottomTab_img_height"
+                android:layout_centerHorizontal="true"
+                android:background="@color/color_ffffff"
+                android:focusable="false"
+                android:scaleType="centerInside"
+                android:src="@drawable/selector_tab_mine" />
+
+            <TextView
+                android:id="@+id/bottomTab_tv_mine"
+                style="@style/layout_wrap"
+                android:layout_below="@id/bottomTab_iv_mine"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_1"
+                android:text="@string/mine"
+                android:textColor="@color/color_444444"
+                android:textSize="@dimen/small_font_size" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">hometab</string>
+
+    <string name="home">首页</string>
+    <string name="news">新闻</string>
+    <string name="girl">妹子</string>
+    <string name="mine">我</string>
+
+    <string name="note">备忘录</string>
+    <string name="card">名片</string>
+    <string name="calendar">日历</string>
+    <string name="weather">天气</string>
+    <string name="video">视频</string>
+    <string name="music">音乐</string>
 </resources>

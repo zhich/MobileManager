@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MobileManager.iml" filepath="$PROJECT_DIR$/MobileManager.iml" />
-      <module fileurl="file://F:\workspace\github\MobileManager\app\app.iml" filepath="F:\workspace\github\MobileManager\app\app.iml" />
       <module fileurl="file://F:\workspace\github\MobileManager\appbuilder\app.iml" filepath="F:\workspace\github\MobileManager\appbuilder\app.iml" />
+      <module fileurl="file://F:\workspace\github\MobileManager\app\app.iml" filepath="F:\workspace\github\MobileManager\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/appbuilder/appbuilder.iml" filepath="$PROJECT_DIR$/appbuilder/appbuilder.iml" />
       <module fileurl="file://$PROJECT_DIR$/baselib/baselib.iml" filepath="$PROJECT_DIR$/baselib/baselib.iml" />
       <module fileurl="file://$PROJECT_DIR$/bizzlib/bizzlib.iml" filepath="$PROJECT_DIR$/bizzlib/bizzlib.iml" />

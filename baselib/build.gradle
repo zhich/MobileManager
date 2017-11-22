@@ -46,4 +46,5 @@ dependencies {
         exclude module: 'fastjson'
         exclude module: 'support-v4'
     }
+    api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$rootProject.baseRecyclerViewAdapter"
 }

@@ -3,7 +3,7 @@
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="@color/theme_color">
+    android:background="@color/color_theme">
 
     <TextView
         android:id="@+id/titlebar_tv_back"

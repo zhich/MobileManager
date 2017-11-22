@@ -146,10 +146,18 @@ public class Titlebar extends RelativeLayout implements View.OnClickListener {
         }
     }
 
-    public void setRightTvVisibility(boolean visibility) {
-        if (tvRight != null) {
+    public Titlebar setBackVisibility(boolean visibility) {
+        if (null != tvBack) {
+            tvBack.setVisibility(visibility ? VISIBLE : INVISIBLE);
+        }
+        return this;
+    }
+
+    public Titlebar setRightTvVisibility(boolean visibility) {
+        if (null != tvRight) {
             tvRight.setVisibility(visibility ? VISIBLE : INVISIBLE);
         }
+        return this;
     }
 
     public void setTitle(String title) {
