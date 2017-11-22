@@ -17,6 +17,12 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
     }
 
     sourceSets {
@@ -41,6 +47,7 @@ android {
 
 dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknife"
+    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.arouterCompiler"
 
-    api project(':baselib')
+    api project(':bizzlib')
 }

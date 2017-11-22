@@ -1,1 +1,1 @@
-include ':appbuilder', ':hometab', ':baselib', ':video', ':user'
+include ':appbuilder', ':hometab', ':baselib', ':video', ':user', ':bizzlib'

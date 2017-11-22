@@ -1,18 +1,9 @@
-if (developMod.toBoolean()) {
-    apply plugin: 'com.android.application'
-} else {
-    apply plugin: 'com.android.library'
-}
-apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        if (developMod.toBoolean()) {
-            applicationId "com.zch.user"
-        }
-
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -21,17 +12,6 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [moduleName: project.getName()]
-            }
-        }
-    }
-
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
-            if (developMod.toBoolean()) {
-                manifest.srcFile 'src/main/develop/AndroidManifest.xml'
-            } else {
-                manifest.srcFile 'src/main/release/AndroidManifest.xml'
             }
         }
     }
@@ -49,5 +29,5 @@ dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknife"
     annotationProcessor "com.alibaba:arouter-compiler:$rootProject.arouterCompiler"
 
-    api project(':bizzlib')
+    api project(':baselib')
 }
