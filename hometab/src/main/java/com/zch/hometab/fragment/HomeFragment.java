@@ -7,7 +7,10 @@ package com.zch.hometab.fragment;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zch.bizzlib.base.BaseAppFragment;
 import com.zch.hometab.R;
 import com.zch.hometab.R2;
@@ -42,6 +45,12 @@ public class HomeFragment extends BaseAppFragment {
         mAppItemAdapter = new AppItemAdapter(R.layout.item_app, getAppItemList());
         rvApp.setLayoutManager(new GridLayoutManager(mContext, 4));
         rvApp.setAdapter(mAppItemAdapter);
+        mAppItemAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Toast.makeText(mContext, position + "", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private List<AppItem> getAppItemList() {

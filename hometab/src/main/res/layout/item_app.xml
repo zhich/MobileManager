@@ -2,9 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/dp_12"
+    android:background="@drawable/selector_ffffff_dddddd_bg"
     android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dp_12"
+    android:paddingTop="@dimen/dp_12">
 
     <ImageView
         android:id="@+id/itemApp_iv_icon"
