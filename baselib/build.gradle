@@ -47,4 +47,5 @@ dependencies {
         exclude module: 'support-v4'
     }
     api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$rootProject.baseRecyclerViewAdapter"
+    api "com.google.code.gson:gson:$rootProject.ext.gson"
 }

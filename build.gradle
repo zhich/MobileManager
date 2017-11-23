@@ -39,4 +39,5 @@ ext {
     arouterApi = "1.2.1"
     arouterCompiler = "1.1.2"
     baseRecyclerViewAdapter = "2.9.34"
+    gson = "2.8.2"
 }
