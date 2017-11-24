@@ -9,6 +9,7 @@
     <dimen name="bottomTab_height">52dp</dimen>
     <dimen name="bottomTab_img_height">24dp</dimen>
 
+    <dimen name="dp_0">0dp</dimen>
     <dimen name="dp_0.4">0.4dp</dimen>
     <dimen name="dp_1">1dp</dimen>
     <dimen name="dp_3">3dp</dimen>
@@ -16,12 +17,16 @@
     <dimen name="dp_8">8dp</dimen>
     <dimen name="dp_10">10dp</dimen>
     <dimen name="dp_12">12dp</dimen>
+    <dimen name="dp_15">15dp</dimen>
     <dimen name="dp_16">16dp</dimen>
     <dimen name="dp_17">17dp</dimen>
+    <dimen name="dp_18">18dp</dimen>
     <dimen name="dp_19">19dp</dimen>
     <dimen name="dp_24">24dp</dimen>
+    <dimen name="dp_300">300dp</dimen>
 
 
+    <dimen name="big_font_size">17sp</dimen>
     <dimen name="sp_16">16sp</dimen>
     <dimen name="common_font_size">15sp</dimen>
     <dimen name="mid_font_size2">14sp</dimen>

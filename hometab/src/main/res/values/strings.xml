@@ -12,4 +12,13 @@
     <string name="weather">天气</string>
     <string name="video">视频</string>
     <string name="music">音乐</string>
+
+    <string-array name="home_app_name_arr">
+        <item>@string/note</item>
+        <item>@string/card</item>
+        <item>@string/calendar</item>
+        <item>@string/weather</item>
+        <item>@string/video</item>
+        <item>@string/music</item>
+    </string-array>
 </resources>

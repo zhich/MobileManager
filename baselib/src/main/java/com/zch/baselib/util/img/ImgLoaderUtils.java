@@ -1,6 +1,6 @@
 /*
  * ImgLoaderUtils      2017-11-22
- * Copyright © gnt All Rights Reserved.
+ * Copyright © zch All Rights Reserved.
  *
  */
 package com.zch.baselib.util.img;

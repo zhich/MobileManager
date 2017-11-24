@@ -1,6 +1,6 @@
 /*
  * CustomDecoration      2017-11-21
- * Copyright © gnt All Rights Reserved.
+ * Copyright © zch All Rights Reserved.
  *
  */
 package com.zch.baselib.widget;
