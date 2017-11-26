@@ -3,14 +3,13 @@
   * Copyright (c) 2017 zch. All right reserved.
   *
   */
-package com.zch.hometab.adapter;
+package com.zch.hometab.modules.home;
 
-import android.support.annotation.Nullable;
+import android.content.Context;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.zch.baselib.adapter.BaseAdapter;
+import com.zch.baselib.adapter.BaseViewHolder;
 import com.zch.hometab.R;
-import com.zch.hometab.entity.AppItem;
 
 import java.util.List;
 
@@ -20,10 +19,10 @@ import java.util.List;
  * @author zch
  * @since 2017-11-22
  */
-public class AppItemAdapter extends BaseQuickAdapter<AppItem, BaseViewHolder> {
+public class AppItemAdapter extends BaseAdapter<AppItem> {
 
-    public AppItemAdapter(int layoutResId, @Nullable List<AppItem> data) {
-        super(layoutResId, data);
+    public AppItemAdapter(Context context, int layoutResId, List<AppItem> dataList) {
+        super(context, layoutResId, dataList, false);
     }
 
     @Override

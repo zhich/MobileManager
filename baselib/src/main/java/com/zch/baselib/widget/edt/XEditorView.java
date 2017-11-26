@@ -25,8 +25,8 @@ import com.zch.baselib.R;
  */
 public class XEditorView extends BaseEditorView {
 
-    private ImageView ivRightImg;
-    private TextView tvRighText;
+    private ImageView mRightIv;
+    private TextView mRighTv;
 
     public XEditorView(Context context) {
         this(context, null);
@@ -45,18 +45,18 @@ public class XEditorView extends BaseEditorView {
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.view_clear_edittext, this);
 
-        tvTag = (TextView) findViewById(R.id.clearEditText_tv_tag);
-        edtValue = (EditText) findViewById(R.id.clearEditText_edt_value);
-        btnClearContent = (Button) findViewById(R.id.clearEditText_btn_clearContent);
+        mTagTv = (TextView) findViewById(R.id.clearEditText_tv_tag);
+        mValueEdt = (EditText) findViewById(R.id.clearEditText_edt_value);
+        mClearContentBtn = (Button) findViewById(R.id.clearEditText_btn_clearContent);
 
-        ivRightImg = (ImageView) findViewById(R.id.clearEditText_iv_rightImg);
-        tvRighText = (TextView) findViewById(R.id.clearEditText_tv_rightText);
+        mRightIv = (ImageView) findViewById(R.id.clearEditText_iv_rightImg);
+        mRighTv = (TextView) findViewById(R.id.clearEditText_tv_rightText);
     }
 
     @Override
     protected void setListenner() {
         super.setBaseListenner();
-        ivRightImg.setOnClickListener(new OnClickListener() {
+        mRightIv.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (null != onRightImgClickLitener) {
@@ -70,22 +70,22 @@ public class XEditorView extends BaseEditorView {
     }
 
     public XEditorView initData(String tag) {
-        tvTag.setText(tag);
+        mTagTv.setText(tag);
         return this;
     }
 
     public XEditorView initData(String tag, int rightImgResId) {
-        tvTag.setText(tag);
-        ivRightImg.setImageResource(rightImgResId);
-        ivRightImg.setVisibility(VISIBLE);
+        mTagTv.setText(tag);
+        mRightIv.setImageResource(rightImgResId);
+        mRightIv.setVisibility(VISIBLE);
 
         return this;
     }
 
     public XEditorView initData(String tag, String rightText) {
-        tvTag.setText(tag);
-        tvRighText.setText(rightText);
-        tvRighText.setVisibility(VISIBLE);
+        mTagTv.setText(tag);
+        mRighTv.setText(rightText);
+        mRighTv.setVisibility(VISIBLE);
 
         return this;
     }
@@ -118,7 +118,7 @@ public class XEditorView extends BaseEditorView {
      * @return
      */
     public XEditorView setHint(String hintMsg) {
-        edtValue.setHint(hintMsg);
+        mValueEdt.setHint(hintMsg);
         return this;
     }
 }

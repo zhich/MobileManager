@@ -7,10 +7,8 @@ package com.zch.bizzlib.base;
 
 import com.zch.baselib.base.BaseFragment;
 
-import butterknife.ButterKnife;
-
 /**
- * description
+ * Fragment 基类
  *
  * @author zch
  * @since 2017-11-22
@@ -18,11 +16,6 @@ import butterknife.ButterKnife;
 public abstract class BaseAppFragment extends BaseFragment {
 
     protected boolean mIsLoadedData = false;
-
-    @Override
-    protected void bindView() {
-        ButterKnife.bind(this, mFragmentView);
-    }
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {

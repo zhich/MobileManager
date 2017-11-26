@@ -3,11 +3,12 @@
  * Copyright © zch All Rights Reserved.
  *
  */
-package com.zch.hometab.activity;
+package com.zch.hometab;
 
 import android.content.Intent;
 
 import com.zch.bizzlib.base.BaseAppActivity;
+import com.zch.hometab.HomeActivity;
 import com.zch.hometab.R;
 
 /**

@@ -3,19 +3,17 @@
   * Copyright (c) 2017 zch. All right reserved.
   *
   */
-package com.zch.hometab.fragment;
+package com.zch.hometab.modules.home;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.zch.baselib.adapter.BaseViewHolder;
+import com.zch.baselib.adapter.OnItemClickListener;
 import com.zch.baselib.util.ToastUtils;
 import com.zch.bizzlib.base.BaseAppFragment;
 import com.zch.hometab.R;
 import com.zch.hometab.R2;
-import com.zch.hometab.adapter.AppItemAdapter;
-import com.zch.hometab.entity.AppItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +29,7 @@ import butterknife.BindView;
 public class HomeFragment extends BaseAppFragment {
 
     @BindView(R2.id.home_rv_app)
-    RecyclerView rvApp;
+    RecyclerView mAppRv;
 
     private AppItemAdapter mAppItemAdapter;
 
@@ -42,12 +40,12 @@ public class HomeFragment extends BaseAppFragment {
 
     @Override
     protected void init() {
-        mAppItemAdapter = new AppItemAdapter(R.layout.item_app, getAppItemList());
-        rvApp.setLayoutManager(new GridLayoutManager(mContext, 4));
-        rvApp.setAdapter(mAppItemAdapter);
-        mAppItemAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        mAppItemAdapter = new AppItemAdapter(mContext, R.layout.item_app, getAppItemList());
+        mAppRv.setLayoutManager(new GridLayoutManager(mContext, 4));
+        mAppRv.setAdapter(mAppItemAdapter);
+        mAppItemAdapter.setOnItemClickListener(new OnItemClickListener<AppItem>() {
             @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+            public void onItemClick(BaseViewHolder baseViewHolder, AppItem data, int position) {
                 ToastUtils.showToastShort(mContext, position + "");
             }
         });

@@ -18,11 +18,6 @@ import butterknife.ButterKnife;
 public abstract class BaseAppFragmentActivity extends BaseFragmentActivity {
 
     @Override
-    protected void bindView() {
-        ButterKnife.bind(this);
-    }
-
-    @Override
     protected void setListener() {
 
     }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.zch.hometab.activity.HomeActivity">
+    tools:context="com.zch.hometab.HomeActivity">
 
     <com.zch.baselib.widget.Titlebar
         android:id="@+id/home_titlebar"

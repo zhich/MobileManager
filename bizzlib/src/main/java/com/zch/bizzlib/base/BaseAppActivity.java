@@ -18,12 +18,6 @@ import butterknife.ButterKnife;
 public abstract class BaseAppActivity extends BaseActivity {
 
     @Override
-    protected void bindView() {
-        ButterKnife.bind(this);
-    }
-
-
-    @Override
     protected void setListener() {
 
     }

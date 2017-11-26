@@ -7,11 +7,20 @@ package com.zch.baselib.base;
 
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
+
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * FragmentActivity 基类，与业务逻辑无关
@@ -22,6 +31,14 @@ import org.greenrobot.eventbus.EventBus;
 public abstract class BaseFragmentActivity extends FragmentActivity {
 
     protected Context mContext;
+    protected Unbinder mUnbinder;
+    protected ArrayList<BasePresenter> mPresenters = new ArrayList<>();
+
+    protected abstract int getLayoutResource();
+
+    protected abstract void init();
+
+    protected abstract void setListener();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +50,19 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
         if (layoutResourceId != 0) {
             setContentView(layoutResourceId);
         }
-        bindView();
+        mUnbinder = ButterKnife.bind(this);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0 全透明状态栏
+            View decorView = getWindow().getDecorView();
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decorView.setSystemUiVisibility(option);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {//4.4 全透明状态栏
+            WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
+            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
+        }
+
         init();
         setListener();
     }
@@ -58,11 +87,16 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
 //        EventBus.getDefault().unregister(this);
 //    }
 
-    protected abstract int getLayoutResource();
+    @Override
+    protected void onDestroy() {
+        mUnbinder.unbind();
+        for (BasePresenter p : mPresenters) {
+            p.detach();
+        }
+        super.onDestroy();
+    }
 
-    protected abstract void bindView();
-
-    protected abstract void init();
-
-    protected abstract void setListener();
+    protected void addPresenter(BasePresenter presenter) {
+        mPresenters.add(presenter);
+    }
 }

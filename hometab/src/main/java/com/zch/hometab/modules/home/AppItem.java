@@ -3,7 +3,7 @@
   * Copyright (c) 2017 zch. All right reserved.
   *
   */
-package com.zch.hometab.entity;
+package com.zch.hometab.modules.home;
 
 /**
  * 应用项

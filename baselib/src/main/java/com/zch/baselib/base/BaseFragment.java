@@ -13,6 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * Fragment 的基类，与业务逻辑无关
  *
@@ -23,16 +28,27 @@ public abstract class BaseFragment extends Fragment {
 
     protected Context mContext;
     protected View mFragmentView;
+    protected Unbinder mUnbinder;
+    protected ArrayList<BasePresenter> mPresenters = new ArrayList<>();
+
+    protected abstract int getLayoutResource();
+
+    protected abstract void init();
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = getActivity();
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mContext = this.getActivity();
         int layoutResourceId = getLayoutResource();
         if (layoutResourceId != 0) {
             mFragmentView = inflater.inflate(getLayoutResource(), container, false);
         }
-        bindView();
+        mUnbinder = ButterKnife.bind(this, mFragmentView);
         return mFragmentView;
     }
 
@@ -42,9 +58,21 @@ public abstract class BaseFragment extends Fragment {
         init();
     }
 
-    protected abstract int getLayoutResource();
+    @Override
+    public void onDestroyView() {
+        mUnbinder.unbind();
+        super.onDestroyView();
+    }
 
-    protected abstract void bindView();
+    @Override
+    public void onDestroy() {
+        for (BasePresenter p : mPresenters) {
+            p.detach();
+        }
+        super.onDestroy();
+    }
 
-    protected abstract void init();
+    protected void addPresenter(BasePresenter presenter) {
+        mPresenters.add(presenter);
+    }
 }

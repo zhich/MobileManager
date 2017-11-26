@@ -48,4 +48,10 @@ dependencies {
     }
     api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$rootProject.baseRecyclerViewAdapter"
     api "com.google.code.gson:gson:$rootProject.ext.gson"
+    api "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroid"
+    api "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava"
+    api "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofit"
+    api "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofit"
+    api "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofit"
+    api "com.github.bumptech.glide:glide:$rootProject.ext.glide"
 }

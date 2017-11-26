@@ -25,11 +25,11 @@ import com.zch.baselib.R;
 public class BaseMenu implements View.OnClickListener {
 
     protected Context mContext;
-    protected Dialog dialog;
+    protected Dialog mDialog;
 
     protected BaseMenu(Context context) {
         this.mContext = context;
-        this.dialog = new Dialog(mContext, R.style.base_menu);
+        this.mDialog = new Dialog(mContext, R.style.base_menu);
     }
 
     @Override
@@ -38,10 +38,10 @@ public class BaseMenu implements View.OnClickListener {
     }
 
     protected void setMenuLocation() {
-        if (null == mContext || null == dialog) {
+        if (null == mContext || null == mDialog) {
             return;
         }
-        Window window = dialog.getWindow();
+        Window window = mDialog.getWindow();
         window.setWindowAnimations(R.style.base_menu_anim_style);
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
@@ -58,19 +58,19 @@ public class BaseMenu implements View.OnClickListener {
             lp.y = display.getHeight();
         }
 
-        dialog.onWindowAttributesChanged(lp);
-        dialog.setCanceledOnTouchOutside(true);
+        mDialog.onWindowAttributesChanged(lp);
+        mDialog.setCanceledOnTouchOutside(true);
     }
 
     public void show() {
-        if (null != dialog) {
-            dialog.show();
+        if (null != mDialog) {
+            mDialog.show();
         }
     }
 
     public void dismiss() {
-        if (null != dialog) {
-            dialog.dismiss();
+        if (null != mDialog) {
+            mDialog.dismiss();
         }
     }
 }

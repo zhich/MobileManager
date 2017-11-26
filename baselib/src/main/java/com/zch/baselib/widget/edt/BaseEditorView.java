@@ -25,9 +25,9 @@ import android.widget.TextView;
  */
 public abstract class BaseEditorView extends LinearLayout {
 
-    protected TextView tvTag;
-    protected EditText edtValue;
-    protected Button btnClearContent;
+    protected TextView mTagTv;
+    protected EditText mValueEdt;
+    protected Button mClearContentBtn;
 
     public BaseEditorView(Context context) {
         this(context, null);
@@ -53,20 +53,20 @@ public abstract class BaseEditorView extends LinearLayout {
      * 设置监听
      */
     protected void setBaseListenner() {
-        edtValue.addTextChangedListener(new TextWatcher() {
+        mValueEdt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 0 && edtValue.hasFocus()) {
-                    btnClearContent.setVisibility(VISIBLE);
+                if (s.length() > 0 && mValueEdt.hasFocus()) {
+                    mClearContentBtn.setVisibility(VISIBLE);
                 } else {
-                    btnClearContent.setVisibility(GONE);
+                    mClearContentBtn.setVisibility(GONE);
                 }
                 if (null != onTextChangedLitener) {
-                    onTextChangedLitener.onTextChanged(edtValue.getText().toString().trim());
+                    onTextChangedLitener.onTextChanged(mValueEdt.getText().toString().trim());
                 }
             }
 
@@ -76,26 +76,26 @@ public abstract class BaseEditorView extends LinearLayout {
             }
         });
 
-        edtValue.setOnFocusChangeListener(new OnFocusChangeListener() {
+        mValueEdt.setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
                     if (getValue().length() > 0) {
-                        btnClearContent.setVisibility(VISIBLE);
+                        mClearContentBtn.setVisibility(VISIBLE);
                     } else {
-                        btnClearContent.setVisibility(GONE);
+                        mClearContentBtn.setVisibility(GONE);
                     }
                 } else {
-                    btnClearContent.setVisibility(GONE);
+                    mClearContentBtn.setVisibility(GONE);
                 }
             }
         });
 
-        btnClearContent.setOnClickListener(new OnClickListener() {
+        mClearContentBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                edtValue.setText("");
-                btnClearContent.setVisibility(GONE);
+                mValueEdt.setText("");
+                mClearContentBtn.setVisibility(GONE);
             }
         });
     }
@@ -121,7 +121,7 @@ public abstract class BaseEditorView extends LinearLayout {
     }
 
     public BaseEditorView setTagMinWidth(int width) {
-        tvTag.setMinWidth(width);
+        mTagTv.setMinWidth(width);
         return this;
     }
 
@@ -131,7 +131,7 @@ public abstract class BaseEditorView extends LinearLayout {
      * @return
      */
     public String getValue() {
-        return edtValue.getText().toString().trim();
+        return mValueEdt.getText().toString().trim();
     }
 
     /**
@@ -144,7 +144,7 @@ public abstract class BaseEditorView extends LinearLayout {
         if (null == value) {
             value = "";
         }
-        edtValue.setText(value);
+        mValueEdt.setText(value);
         return this;
     }
 
@@ -154,7 +154,7 @@ public abstract class BaseEditorView extends LinearLayout {
      * @param type
      */
     public BaseEditorView setInputType(int type) {
-        edtValue.setInputType(type);
+        mValueEdt.setInputType(type);
         return this;
     }
 
@@ -164,7 +164,7 @@ public abstract class BaseEditorView extends LinearLayout {
      * @param maxLen
      */
     public BaseEditorView setMaxLen(int maxLen) {
-        edtValue.setFilters(new InputFilter.LengthFilter[]{new InputFilter.LengthFilter(maxLen)});
+        mValueEdt.setFilters(new InputFilter.LengthFilter[]{new InputFilter.LengthFilter(maxLen)});
         return this;
     }
 
@@ -175,19 +175,19 @@ public abstract class BaseEditorView extends LinearLayout {
      * @return
      */
     public BaseEditorView setEditable(boolean editable) {
-        edtValue.setFocusable(editable);
-        edtValue.setFocusableInTouchMode(editable);
+        mValueEdt.setFocusable(editable);
+        mValueEdt.setFocusableInTouchMode(editable);
         if (editable) {
-            edtValue.requestFocus();
+            mValueEdt.requestFocus();
         }
         return this;
     }
 
     public EditText getEditText() {
-        return edtValue;
+        return mValueEdt;
     }
 
     public TextView getLeftTextView() {
-        return tvTag;
+        return mTagTv;
     }
 }

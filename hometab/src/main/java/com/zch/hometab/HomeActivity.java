@@ -3,7 +3,7 @@
  * Copyright © zch All Rights Reserved.
  *
  */
-package com.zch.hometab.activity;
+package com.zch.hometab;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -13,15 +13,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.zch.baselib.util.ResourceUtils;
 import com.zch.baselib.widget.Titlebar;
 import com.zch.bizzlib.base.BaseAppFragmentActivity;
 import com.zch.bizzlib.constant.RouterPathConstant;
-import com.zch.hometab.R;
-import com.zch.hometab.R2;
-import com.zch.hometab.fragment.GirlFragment;
-import com.zch.hometab.fragment.HomeFragment;
-import com.zch.hometab.fragment.MineFragment;
-import com.zch.hometab.fragment.NewsFragment;
+import com.zch.hometab.modules.home.HomeFragment;
+import com.zch.hometab.modules.mine.MineFragment;
+import com.zch.hometab.modules.news.NewsFragment;
 
 import butterknife.BindView;
 import butterknife.BindViews;
@@ -37,16 +35,16 @@ import butterknife.OnClick;
 public class HomeActivity extends BaseAppFragmentActivity {
 
     @BindView(R2.id.home_titlebar)
-    Titlebar titlebar;
+    Titlebar mTitlebar;
     @BindViews({R2.id.bottomTab_iv_home, R2.id.bottomTab_iv_news, R2.id.bottomTab_iv_girl, R2.id.bottomTab_iv_mine})
-    ImageView[] tabImgs;
+    ImageView[] mTabImgs;
     @BindViews({R2.id.bottomTab_tv_home, R2.id.bottomTab_tv_news, R2.id.bottomTab_tv_girl, R2.id.bottomTab_tv_mine})
-    TextView[] tabTexts;
+    TextView[] mTabTexts;
 
     /* package */ Fragment[] mFragments;
     private HomeFragment mHomeFragment;
     private NewsFragment mNewsFragment;
-    private GirlFragment mGirlFragment;
+    private TypeFragment mTypeGirlFragment;
     private MineFragment mMineFragment;
 
     /* package */ int mCurrentTabIndex; // 当前 fragment 的 index
@@ -58,36 +56,36 @@ public class HomeActivity extends BaseAppFragmentActivity {
 
     @Override
     protected void init() {
-        titlebar.initData(mContext.getString(R.string.home)).setBackVisibility(false);
+        mTitlebar.initData(mContext.getString(R.string.home)).setBackVisibility(false);
 
         mHomeFragment = new HomeFragment();
         mNewsFragment = new NewsFragment();
-        mGirlFragment = new GirlFragment();
+        mTypeGirlFragment = TypeFragment.newInstance(ResourceUtils.resToStr(mContext, R.string.girl));
         mMineFragment = new MineFragment();
-        mFragments = new Fragment[]{mHomeFragment, mNewsFragment, mGirlFragment, mMineFragment};
+        mFragments = new Fragment[]{mHomeFragment, mNewsFragment, mTypeGirlFragment, mMineFragment};
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.home_fl_realTabContent, mHomeFragment)
                 .show(mHomeFragment).commit();
 
         mCurrentTabIndex = 0;
-        tabImgs[mCurrentTabIndex].setSelected(true);
-        tabTexts[mCurrentTabIndex].setTextColor(ContextCompat.getColor(mContext, R.color.color_theme));
+        mTabImgs[mCurrentTabIndex].setSelected(true);
+        mTabTexts[mCurrentTabIndex].setTextColor(ContextCompat.getColor(mContext, R.color.color_theme));
     }
 
     @OnClick({R2.id.bottomTab_rl_home, R2.id.bottomTab_rl_news, R2.id.bottomTab_rl_girl, R2.id.bottomTab_rl_mine})
     public void onClickEvent(View v) {
         int viewId = v.getId();
         if (viewId == R.id.bottomTab_rl_home) {
-            titlebar.setTitle(mContext.getString(R.string.home));
+            mTitlebar.setTitle(mContext.getString(R.string.home));
             processTabClickEvent(0);
         } else if (viewId == R.id.bottomTab_rl_news) {
-            titlebar.setTitle(mContext.getString(R.string.news));
+            mTitlebar.setTitle(mContext.getString(R.string.news));
             processTabClickEvent(1);
         } else if (viewId == R.id.bottomTab_rl_girl) {
-            titlebar.setTitle(mContext.getString(R.string.girl));
+            mTitlebar.setTitle(mContext.getString(R.string.girl));
             processTabClickEvent(2);
         } else if (viewId == R.id.bottomTab_rl_mine) {
-            titlebar.setTitle(mContext.getString(R.string.mine));
+            mTitlebar.setTitle(mContext.getString(R.string.mine));
             processTabClickEvent(3);
         }
     }
@@ -108,10 +106,10 @@ public class HomeActivity extends BaseAppFragmentActivity {
         }
         trx.show(mFragments[index]).commit();
 
-        tabImgs[mCurrentTabIndex].setSelected(false);
-        tabImgs[index].setSelected(true);
-        tabTexts[mCurrentTabIndex].setTextColor(ContextCompat.getColor(mContext, R.color.color_444444));
-        tabTexts[index].setTextColor(ContextCompat.getColor(mContext, R.color.color_theme));
+        mTabImgs[mCurrentTabIndex].setSelected(false);
+        mTabImgs[index].setSelected(true);
+        mTabTexts[mCurrentTabIndex].setTextColor(ContextCompat.getColor(mContext, R.color.color_444444));
+        mTabTexts[index].setTextColor(ContextCompat.getColor(mContext, R.color.color_theme));
         mCurrentTabIndex = index;
     }
 }

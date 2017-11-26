@@ -5,7 +5,12 @@
  */
 package com.zch.baselib.util.img;
 
+import android.content.Context;
 import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.zch.baselib.base.BaseApp;
 
 /**
  * 图片加载工具类
@@ -23,5 +28,13 @@ public class ImgLoaderUtils {
      */
     public static void loadLocalImg(final ImageView imageView, int imgResId) {
         imageView.setImageResource(imgResId);
+    }
+
+    public static void loadImg(String url, ImageView iv) {
+        Glide.with(BaseApp.getInstance())
+                .load(url)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .crossFade()
+                .into(iv);
     }
 }

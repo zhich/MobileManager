@@ -4,7 +4,7 @@
 
     <application>
         <activity
-            android:name="com.zch.hometab.activity.StartActivity"
+            android:name="com.zch.hometab.StartActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

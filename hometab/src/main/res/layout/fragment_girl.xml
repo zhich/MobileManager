@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/layout_full"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/girl"
-        android:textSize="40sp" />
-</LinearLayout>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/girl_swipfreshlayout"
+        style="@style/layout_full">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/girl_rv_grils"
+            style="@style/layout_full"
+            android:overScrollMode="never"
+            android:scrollbars="vertical" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+</android.support.design.widget.CoordinatorLayout>

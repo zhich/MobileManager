@@ -1,25 +1,24 @@
 /*
-  * MineFragment      2017-11-22
+  * NewsFragment      2017-11-22
   * Copyright (c) 2017 zch. All right reserved.
   *
   */
-package com.zch.hometab.fragment;
+package com.zch.hometab.modules.news;
 
 import com.zch.bizzlib.base.BaseAppFragment;
 import com.zch.hometab.R;
 
 /**
- * 【我】界面
+ * 【新闻】界面
  *
  * @author zch
  * @since 2017-11-22
  */
-public class MineFragment extends BaseAppFragment {
-
+public class NewsFragment extends BaseAppFragment {
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.fragment_mine;
+        return R.layout.fragment_news;
     }
 
     @Override

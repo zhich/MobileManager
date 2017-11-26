@@ -30,9 +30,9 @@ public class Titlebar extends RelativeLayout implements View.OnClickListener {
 
     /* package */ Context mContext;
 
-    private TextView tvBack;
-    private TextView tvTitle;
-    private TextView tvRight;
+    private TextView mBackTv;
+    private TextView mTitleTv;
+    private TextView mRightTv;
 
     /* package */ GPopupWindow gPopupWindow;
 
@@ -63,14 +63,14 @@ public class Titlebar extends RelativeLayout implements View.OnClickListener {
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.view_titlebar, this);
 
-        tvBack = (TextView) findViewById(R.id.titlebar_tv_back);
-        tvTitle = (TextView) findViewById(R.id.titlebar_tv_title);
-        tvRight = (TextView) findViewById(R.id.titlebar_tv_right);
+        mBackTv = (TextView) findViewById(R.id.titlebar_tv_back);
+        mTitleTv = (TextView) findViewById(R.id.titlebar_tv_title);
+        mRightTv = (TextView) findViewById(R.id.titlebar_tv_right);
     }
 
     private void setListener() {
-        tvBack.setOnClickListener(this);
-        tvRight.setOnClickListener(this);
+        mBackTv.setOnClickListener(this);
+        mRightTv.setOnClickListener(this);
     }
 
     @Override
@@ -91,7 +91,7 @@ public class Titlebar extends RelativeLayout implements View.OnClickListener {
                         }
                     });
                 }
-                gPopupWindow.showPopupWindow(tvRight);
+                gPopupWindow.showPopupWindow(mRightTv);
             }
         }
     }
@@ -117,26 +117,26 @@ public class Titlebar extends RelativeLayout implements View.OnClickListener {
     }
 
     public Titlebar initData(String title) {
-        tvTitle.setText(title);
+        mTitleTv.setText(title);
         return this;
     }
 
     public Titlebar initData(String title, ArrayList<GpopupItem> dataList) {
-        tvTitle.setText(title);
+        mTitleTv.setText(title);
 
         this.mDataList = dataList;
-        Drawable drawableLeft = tvRight.getCompoundDrawables()[0];
+        Drawable drawableLeft = mRightTv.getCompoundDrawables()[0];
         drawableLeft.setBounds(0, 0, drawableLeft.getIntrinsicWidth(), drawableLeft.getIntrinsicHeight());
-        tvRight.setCompoundDrawables(drawableLeft, null, null, null);
-        tvRight.setVisibility(View.VISIBLE);
+        mRightTv.setCompoundDrawables(drawableLeft, null, null, null);
+        mRightTv.setVisibility(View.VISIBLE);
         return this;
     }
 
     public Titlebar initData(String title, String rightText) {
-        tvTitle.setText(title);
-        tvRight.setCompoundDrawables(null, null, null, null);
-        tvRight.setText(rightText);
-        tvRight.setVisibility(View.VISIBLE);
+        mTitleTv.setText(title);
+        mRightTv.setCompoundDrawables(null, null, null, null);
+        mRightTv.setText(rightText);
+        mRightTv.setVisibility(View.VISIBLE);
         return this;
     }
 
@@ -147,21 +147,21 @@ public class Titlebar extends RelativeLayout implements View.OnClickListener {
     }
 
     public Titlebar setBackVisibility(boolean visibility) {
-        if (null != tvBack) {
-            tvBack.setVisibility(visibility ? VISIBLE : INVISIBLE);
+        if (null != mBackTv) {
+            mBackTv.setVisibility(visibility ? VISIBLE : INVISIBLE);
         }
         return this;
     }
 
     public Titlebar setRightTvVisibility(boolean visibility) {
-        if (null != tvRight) {
-            tvRight.setVisibility(visibility ? VISIBLE : INVISIBLE);
+        if (null != mRightTv) {
+            mRightTv.setVisibility(visibility ? VISIBLE : INVISIBLE);
         }
         return this;
     }
 
     public void setTitle(String title) {
-        tvTitle.setText(title);
+        mTitleTv.setText(title);
     }
 
     public void setDataList(ArrayList<GpopupItem> dataList) {

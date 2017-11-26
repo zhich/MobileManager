@@ -3,7 +3,7 @@
     package="com.zch.hometab">
 
     <application>
-        <activity android:name=".activity.HomeActivity" />
+        <activity android:name=".HomeActivity" />
     </application>
 
 </manifest>

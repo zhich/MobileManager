@@ -28,8 +28,8 @@ import java.util.List;
  */
 public class SingleLevelMenu extends BaseMenu {
 
-    private TextView tvTitle;
-    private MyWheelView myWheelView;
+    private TextView mTitleTv;
+    private MyWheelView mMyWheelView;
 
     /* package */ ChildItem mSelItem; //选中的项
     /* package */ List<ChildItem> mDataList;
@@ -40,19 +40,19 @@ public class SingleLevelMenu extends BaseMenu {
     }
 
     private void initView() {
-        dialog = new Dialog(mContext, R.style.base_menu);
-        dialog.setContentView(R.layout.layout_single_level_menu);
+        mDialog = new Dialog(mContext, R.style.base_menu);
+        mDialog.setContentView(R.layout.layout_single_level_menu);
 
-        tvTitle = (TextView) dialog.findViewById(R.id.singleLevelMenu_tv_title);
-        myWheelView = (MyWheelView) dialog.findViewById(R.id.singleLevelMenu_wheel);
+        mTitleTv = (TextView) mDialog.findViewById(R.id.singleLevelMenu_tv_title);
+        mMyWheelView = (MyWheelView) mDialog.findViewById(R.id.singleLevelMenu_wheel);
 
-        dialog.findViewById(R.id.singleLevelMenu_tv_cancel).setOnClickListener(this);
-        dialog.findViewById(R.id.singleLevelMenu_tv_sure).setOnClickListener(this);
+        mDialog.findViewById(R.id.singleLevelMenu_tv_cancel).setOnClickListener(this);
+        mDialog.findViewById(R.id.singleLevelMenu_tv_sure).setOnClickListener(this);
 
-        myWheelView.setCyclic(false);
-        myWheelView.setLineSpacingMultiplier(2.6f);
-        myWheelView.setTextSize(18);
-        myWheelView.setOnItemSelectedListener(new OnItemSelectedListener() {
+        mMyWheelView.setCyclic(false);
+        mMyWheelView.setLineSpacingMultiplier(2.6f);
+        mMyWheelView.setTextSize(18);
+        mMyWheelView.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(int index) {
                 if (!ListUtils.isEmpty(mDataList)) {
@@ -88,7 +88,7 @@ public class SingleLevelMenu extends BaseMenu {
             return this;
         }
         this.mDataList = dataList;
-        tvTitle.setText(title);
+        mTitleTv.setText(title);
 
         //int currentItem = dataList.size() / 2 == 0 ? dataList.size() / 2 - 1 : dataList.size() / 2;
         int currentItem = 0;
@@ -104,8 +104,8 @@ public class SingleLevelMenu extends BaseMenu {
         for (ChildItem Item : dataList) {
             stringList.add(Item.value);
         }
-        myWheelView.setAdapter(new ArrayWheelAdapter(stringList));
-        myWheelView.setCurrentItem(currentItem);
+        mMyWheelView.setAdapter(new ArrayWheelAdapter(stringList));
+        mMyWheelView.setCurrentItem(currentItem);
         mSelItem = dataList.get(currentItem);
         return this;
     }

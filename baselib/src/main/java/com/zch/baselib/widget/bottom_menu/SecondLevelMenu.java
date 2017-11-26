@@ -27,9 +27,9 @@ import java.util.List;
  */
 public class SecondLevelMenu extends BaseMenu {
 
-    private TextView tvTitle;
-    private MyWheelView parentMyWheelView;
-    private MyWheelView childMyWheelView;
+    private TextView mTitleTv;
+    private MyWheelView mParentMyWheelView;
+    private MyWheelView mChildMyWheelView;
     /* package */ ChildItem mFirstChildSelItem;
     /* package */ ChildItem mSecondChildSelItem;
 
@@ -44,20 +44,20 @@ public class SecondLevelMenu extends BaseMenu {
     }
 
     private void initView() {
-        dialog = new Dialog(mContext, R.style.base_menu);
-        dialog.setContentView(R.layout.layout_second_level_menu);
+        mDialog = new Dialog(mContext, R.style.base_menu);
+        mDialog.setContentView(R.layout.layout_second_level_menu);
 
-        tvTitle = (TextView) dialog.findViewById(R.id.secondLevelMenu_tv_title);
-        parentMyWheelView = (MyWheelView) dialog.findViewById(R.id.secondLevelMenu_parentWheel);
-        childMyWheelView = (MyWheelView) dialog.findViewById(R.id.secondLevelMenu_childWheel);
+        mTitleTv = (TextView) mDialog.findViewById(R.id.secondLevelMenu_tv_title);
+        mParentMyWheelView = (MyWheelView) mDialog.findViewById(R.id.secondLevelMenu_parentWheel);
+        mChildMyWheelView = (MyWheelView) mDialog.findViewById(R.id.secondLevelMenu_childWheel);
 
-        dialog.findViewById(R.id.secondLevelMenu_tv_cancel).setOnClickListener(this);
-        dialog.findViewById(R.id.secondLevelMenu_tv_sure).setOnClickListener(this);
+        mDialog.findViewById(R.id.secondLevelMenu_tv_cancel).setOnClickListener(this);
+        mDialog.findViewById(R.id.secondLevelMenu_tv_sure).setOnClickListener(this);
 
-        parentMyWheelView.setCyclic(false);
-        parentMyWheelView.setLineSpacingMultiplier(2.6f);
-        parentMyWheelView.setTextSize(18);
-        parentMyWheelView.setOnItemSelectedListener(new OnItemSelectedListener() {
+        mParentMyWheelView.setCyclic(false);
+        mParentMyWheelView.setLineSpacingMultiplier(2.6f);
+        mParentMyWheelView.setTextSize(18);
+        mParentMyWheelView.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(int index) {
                 if (null != mParentDataList && index < mParentDataList.size()) {
@@ -66,18 +66,18 @@ public class SecondLevelMenu extends BaseMenu {
 
                     List<String> secondChildValue = getSecondChildValueList();
                     if (!ListUtils.isEmpty(secondChildValue)) {
-                        childMyWheelView.setAdapter(new ArrayWheelAdapter(secondChildValue));
-                        childMyWheelView.setCurrentItem(0);
+                        mChildMyWheelView.setAdapter(new ArrayWheelAdapter(secondChildValue));
+                        mChildMyWheelView.setCurrentItem(0);
                         mSecondChildSelItem = mParentDataList.get(index).childList.get(0);
                     }
                 }
             }
         });
 
-        childMyWheelView.setCyclic(false);
-        childMyWheelView.setLineSpacingMultiplier(2.6f);
-        childMyWheelView.setTextSize(18);
-        childMyWheelView.setOnItemSelectedListener(new OnItemSelectedListener() {
+        mChildMyWheelView.setCyclic(false);
+        mChildMyWheelView.setLineSpacingMultiplier(2.6f);
+        mChildMyWheelView.setTextSize(18);
+        mChildMyWheelView.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(int index) {
                 if (!ListUtils.isEmpty(mParentDataList)) {
@@ -111,15 +111,15 @@ public class SecondLevelMenu extends BaseMenu {
             return this;
         }
         this.mParentDataList = parentDataList;
-        tvTitle.setText(title);
+        mTitleTv.setText(title);
         ParentItem parentItem = parentDataList.get(0);
 
         List<String> stringList = new ArrayList<>();
         for (ParentItem Item : parentDataList) {
             stringList.add(Item.childItem.value);
         }
-        parentMyWheelView.setAdapter(new ArrayWheelAdapter(stringList));
-        parentMyWheelView.setCurrentItem(0);
+        mParentMyWheelView.setAdapter(new ArrayWheelAdapter(stringList));
+        mParentMyWheelView.setCurrentItem(0);
         mFirstChildSelItem = parentItem.childItem;
 
         stringList = new ArrayList<>();
@@ -127,8 +127,8 @@ public class SecondLevelMenu extends BaseMenu {
             for (ChildItem Item : parentItem.childList) {
                 stringList.add(Item.value);
             }
-            childMyWheelView.setAdapter(new ArrayWheelAdapter(stringList));
-            childMyWheelView.setCurrentItem(0);
+            mChildMyWheelView.setAdapter(new ArrayWheelAdapter(stringList));
+            mChildMyWheelView.setCurrentItem(0);
             mSecondChildSelItem = parentItem.childList.get(0);
         }
         return this;
