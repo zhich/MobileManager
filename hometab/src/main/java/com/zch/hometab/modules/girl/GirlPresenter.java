@@ -42,6 +42,7 @@ public class GirlPresenter extends BasePresenter<IGirlView> {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         LogUtils.e(throwable.getMessage());
+                        mView.onError();
                     }
                 });
     }

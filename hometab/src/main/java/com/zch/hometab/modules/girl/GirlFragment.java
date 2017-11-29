@@ -7,12 +7,14 @@ package com.zch.hometab.modules.girl;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.zch.baselib.adapter.BaseViewHolder;
 import com.zch.baselib.adapter.OnItemClickListener;
 import com.zch.baselib.adapter.OnLoadMoreListener;
+import com.zch.baselib.util.ListUtils;
 import com.zch.baselib.util.ToastUtils;
 import com.zch.bizzlib.base.BaseAppFragment;
 import com.zch.hometab.R;
@@ -39,9 +41,10 @@ public class GirlFragment extends BaseAppFragment implements SwipeRefreshLayout.
     RecyclerView mGirlsRv;
 
     private GirlItemAdapter mGirlItemAdapter;
+    /* package */ GirlPresenter mGirlPresenter;
 
-    /* package */ int mPageCount = 1;
-    /* package */ int mTempPageCount = 2;
+    /* package */ int mPage = 1;
+    /* package */ int mLen = 5;
     /* package */ String mSubtype;
     /* package */ boolean mIsLoadMore; // 是否是底部加载更多
 
@@ -83,48 +86,59 @@ public class GirlFragment extends BaseAppFragment implements SwipeRefreshLayout.
         mGirlItemAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(boolean isReload) {
-                if (mPageCount == mTempPageCount && !isReload) {
-                    return;
-                }
                 mIsLoadMore = true;
-                mPageCount = mTempPageCount;
+                mPage++;
                 fetchData();
             }
         });
 
-        final StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE); // 可防止 item 切换
-        mGirlsRv.setLayoutManager(layoutManager);
+//        final StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+//        layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE); // 可防止 item 切换
+//        mGirlsRv.setLayoutManager(layoutManager);
+//        mGirlsRv.setAdapter(mGirlItemAdapter);
+
+        mGirlsRv.setLayoutManager(new LinearLayoutManager(mContext));
         mGirlsRv.setAdapter(mGirlItemAdapter);
 
         fetchData();
     }
 
     /* package */ void fetchData() {
-        GirlPresenter girlPresenter = new GirlPresenter(this);
-//        girlPresenter.getGirlItemData(mSubtype, mPageCount);
-        girlPresenter.getTuiGirls(1, 10);
-        addPresenter(girlPresenter);
+        if (null == mGirlPresenter) {
+            mGirlPresenter = new GirlPresenter(this);
+            addPresenter(mGirlPresenter);
+        }
+        mGirlPresenter.getTuiGirls(mPage, mLen);
+
     }
 
     @Override
     public void onRefresh() {
         mIsLoadMore = false;
-        mPageCount = 1;
-        mTempPageCount = 2;
+        mPage = 1;
         fetchData();
     }
 
     @Override
     public void onSuccess(List<TuiGirl> data) {
-        mGirlItemAdapter.setData(data);
-        mSwipeRefreshLayout.setRefreshing(false);
+        if (mIsLoadMore) {
+            if (ListUtils.isEmpty(data)) {
+                mGirlItemAdapter.setLoadEndView(R.layout.layout_load_end);
+                mPage--;
+            } else {
+                mGirlItemAdapter.setLoadMoreData(data);
+            }
+        } else {
+            mGirlItemAdapter.setData(data);
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     @Override
     public void onError() {
         if (mIsLoadMore) {
             mGirlItemAdapter.setLoadFailedView(R.layout.layout_load_failed);
+            mPage--;
         } else {
             mSwipeRefreshLayout.setRefreshing(false);
         }

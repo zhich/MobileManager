@@ -355,4 +355,10 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
         mDataList = null == dataList ? new ArrayList<T>() : dataList;
         notifyDataSetChanged();
     }
+
+    public void setLoadMoreData(List<T> datas) {
+        int size = mDataList.size();
+        mDataList.addAll(datas);
+        notifyItemInserted(size);
+    }
 }
