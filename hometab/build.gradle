@@ -1,4 +1,4 @@
-if (developMod.toBoolean()) {
+if (rootProject.ext.isRunAlone) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
@@ -6,21 +6,23 @@ if (developMod.toBoolean()) {
 apply plugin: 'com.jakewharton.butterknife'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
-        if (developMod.toBoolean()) {
+        if (rootProject.ext.isRunAlone) {
             applicationId "com.zch.hometab"
         }
 
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
 
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [moduleName: project.getName()]
+        if (!rootProject.ext.isRunAlone) {
+            javaCompileOptions {
+                annotationProcessorOptions {
+                    arguments = [moduleName: project.getName()]
+                }
             }
         }
     }
@@ -28,7 +30,7 @@ android {
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
-            if (developMod.toBoolean()) {
+            if (rootProject.ext.isRunAlone) {
                 manifest.srcFile 'src/main/develop/AndroidManifest.xml'
             } else {
                 manifest.srcFile 'src/main/release/AndroidManifest.xml'
@@ -46,8 +48,10 @@ android {
 }
 
 dependencies {
-    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknife"
-    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.arouterCompiler"
+    annotationProcessor rootProject.ext.dependencies.butterknife_compiler
+    if (!rootProject.ext.isRunAlone) {
+        annotationProcessor rootProject.ext.dependencies.arouter_compiler
+    }
 
     api project(':bizzlib')
 }

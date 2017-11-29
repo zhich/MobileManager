@@ -1,19 +1,21 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
         applicationId "com.zch.mobilemanager"
 
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
 
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [moduleName: project.getName()]
+        if (!rootProject.ext.isRunAlone) {
+            javaCompileOptions {
+                annotationProcessorOptions {
+                    arguments = [moduleName: project.getName()]
+                }
             }
         }
     }
@@ -26,7 +28,13 @@ android {
 }
 
 dependencies {
-    implementation project(':hometab')
-    implementation project(':video')
-    implementation project(':user')
+    if (!rootProject.ext.isRunAlone) {
+        annotationProcessor "com.alibaba:arouter-compiler:$rootProject.arouterCompiler"
+
+        implementation project(':hometab')
+        implementation project(':video')
+        implementation project(':user')
+    } else {
+        implementation project(':bizzlib')
+    }
 }

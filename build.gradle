@@ -1,5 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
+apply from:"config.gradle"
 buildscript {
 
     repositories {
@@ -27,21 +27,4 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
-}
-
-ext {
-    compileSdkVersion = 26
-    minSdkVersion = 15
-    targetSdkVersion = 26
-    supportLibraryVersion = "26.1.0"
-    butterknife = "9.0.0-SNAPSHOT"
-    eventbus = "3.1.1"
-    arouterApi = "1.2.1"
-    arouterCompiler = "1.1.2"
-    baseRecyclerViewAdapter = "2.9.34"
-    gson = "2.8.2"
-    rxandroid = "2.0.1"
-    rxjava = "2.1.6"
-    retrofit = "2.3.0"
-    glide = "3.7.0"
 }

@@ -33,8 +33,6 @@ public abstract class BaseFragment extends Fragment {
 
     protected abstract int getLayoutResource();
 
-    protected abstract void init();
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -50,12 +48,6 @@ public abstract class BaseFragment extends Fragment {
         }
         mUnbinder = ButterKnife.bind(this, mFragmentView);
         return mFragmentView;
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        init();
     }
 
     @Override

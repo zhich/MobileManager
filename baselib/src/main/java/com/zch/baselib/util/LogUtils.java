@@ -9,6 +9,8 @@ import android.content.ContentValues;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.zch.baselib.BuildConfig;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,8 +46,8 @@ public class LogUtils {
     private static final int XML = 7;
     private static final int JSON_INDENT = 4;
 
-    //private static boolean sIsDebug = BuildConfig.DEBUG; //是否输出日志
-    private static boolean sIsDebug = false; //是否输出日志
+    private static boolean sIsDebug = BuildConfig.DEBUG; //是否输出日志
+//    private static boolean sIsDebug = true; //是否输出日志
 
     private LogUtils() {
     }

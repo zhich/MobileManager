@@ -22,7 +22,7 @@ public class NewsFragment extends BaseAppFragment {
     }
 
     @Override
-    protected void init() {
+    protected void onLazyLoadOnce() {
     }
 
 }

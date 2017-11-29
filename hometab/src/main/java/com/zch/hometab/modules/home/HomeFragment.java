@@ -39,7 +39,7 @@ public class HomeFragment extends BaseAppFragment {
     }
 
     @Override
-    protected void init() {
+    protected void onLazyLoadOnce() {
         mAppItemAdapter = new AppItemAdapter(mContext, R.layout.item_app, getAppItemList());
         mAppRv.setLayoutManager(new GridLayoutManager(mContext, 4));
         mAppRv.setAdapter(mAppItemAdapter);

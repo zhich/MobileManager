@@ -17,5 +17,5 @@ import java.util.List;
  */
 public interface IGirlView extends IView {
 
-    void onSuccess(List<GirlItemData> data);
+    void onSuccess(List<TuiGirl> data);
 }

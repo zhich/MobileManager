@@ -23,7 +23,7 @@ public class MineFragment extends BaseAppFragment {
     }
 
     @Override
-    protected void init() {
+    protected void onLazyLoadOnce() {
     }
 
 }

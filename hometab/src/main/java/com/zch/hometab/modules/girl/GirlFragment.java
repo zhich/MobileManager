@@ -13,7 +13,6 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import com.zch.baselib.adapter.BaseViewHolder;
 import com.zch.baselib.adapter.OnItemClickListener;
 import com.zch.baselib.adapter.OnLoadMoreListener;
-import com.zch.baselib.base.IView;
 import com.zch.baselib.util.ToastUtils;
 import com.zch.bizzlib.base.BaseAppFragment;
 import com.zch.hometab.R;
@@ -60,7 +59,7 @@ public class GirlFragment extends BaseAppFragment implements SwipeRefreshLayout.
     }
 
     @Override
-    protected void init() {
+    protected void onLazyLoadOnce() {
         mSubtype = getArguments().getString(IntentConstant.SUB_TYPE);
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorAccent, R.color.colorPrimaryDark);
@@ -73,11 +72,11 @@ public class GirlFragment extends BaseAppFragment implements SwipeRefreshLayout.
             }
         });
 
-        mGirlItemAdapter = new GirlItemAdapter(mContext, R.layout.item_girl, new ArrayList<GirlItemData>(), true);
+        mGirlItemAdapter = new GirlItemAdapter(mContext, R.layout.item_girl, new ArrayList<TuiGirl>(), true);
         mGirlItemAdapter.setLoadingView(R.layout.layout_loading_more);
-        mGirlItemAdapter.setOnItemClickListener(new OnItemClickListener<GirlItemData>() {
+        mGirlItemAdapter.setOnItemClickListener(new OnItemClickListener<TuiGirl>() {
             @Override
-            public void onItemClick(BaseViewHolder helper, GirlItemData item, int position) {
+            public void onItemClick(BaseViewHolder helper, TuiGirl item, int position) {
                 ToastUtils.showToastShort(mContext, position + "");
             }
         });
@@ -103,7 +102,8 @@ public class GirlFragment extends BaseAppFragment implements SwipeRefreshLayout.
 
     /* package */ void fetchData() {
         GirlPresenter girlPresenter = new GirlPresenter(this);
-        girlPresenter.getGirlItemData(mSubtype, mPageCount);
+//        girlPresenter.getGirlItemData(mSubtype, mPageCount);
+        girlPresenter.getTuiGirls(1, 10);
         addPresenter(girlPresenter);
     }
 
@@ -116,8 +116,9 @@ public class GirlFragment extends BaseAppFragment implements SwipeRefreshLayout.
     }
 
     @Override
-    public void onSuccess(List<GirlItemData> data) {
-
+    public void onSuccess(List<TuiGirl> data) {
+        mGirlItemAdapter.setData(data);
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override

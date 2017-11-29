@@ -15,8 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import com.zch.baselib.util.ListUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,13 +47,13 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
 
     protected abstract void convert(BaseViewHolder helper, T item);
 
-    public BaseAdapter(Context context,int itemLayoutResId, List<T> dataList) {
+    public BaseAdapter(Context context, int itemLayoutResId, List<T> dataList) {
         mContext = context;
         mItemLayoutResId = itemLayoutResId;
         mDataList = null == dataList ? new ArrayList<T>() : dataList;
     }
 
-    public BaseAdapter(Context context,int itemLayoutResId, List<T> dataList, boolean isOpenLoadMore) {
+    public BaseAdapter(Context context, int itemLayoutResId, List<T> dataList, boolean isOpenLoadMore) {
         mContext = context;
         mItemLayoutResId = itemLayoutResId;
         mDataList = null == dataList ? new ArrayList<T>() : dataList;
@@ -351,5 +349,10 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
      */
     public void setEmptyView(View emptyView) {
         mEmptyView = emptyView;
+    }
+
+    public void setData(List<T> dataList) {
+        mDataList = null == dataList ? new ArrayList<T>() : dataList;
+        notifyDataSetChanged();
     }
 }

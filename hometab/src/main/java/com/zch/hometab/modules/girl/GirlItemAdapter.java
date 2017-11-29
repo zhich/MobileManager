@@ -21,16 +21,16 @@ import java.util.List;
  * @author zch
  * @since 2017-11-25
  */
-public class GirlItemAdapter extends BaseAdapter<GirlItemData> {
+public class GirlItemAdapter extends BaseAdapter<TuiGirl> {
 
-    public GirlItemAdapter(Context context, int itemLayoutResId, List<GirlItemData> dataList, boolean isOpenLoadMore) {
+    public GirlItemAdapter(Context context, int itemLayoutResId, List<TuiGirl> dataList, boolean isOpenLoadMore) {
         super(context, itemLayoutResId, dataList, isOpenLoadMore);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, GirlItemData item) {
+    protected void convert(BaseViewHolder helper, TuiGirl item) {
         ScaleImageView scaleImageView = helper.getView(R.id.itemGirl_iv_girl);
-        scaleImageView.setInitSize(item.width, item.height);
-        ImgLoaderUtils.loadImg(item.url, scaleImageView);
+//        scaleImageView.setInitSize(item.width, item.height);
+        ImgLoaderUtils.loadImg(item.src, scaleImageView);
     }
 }

@@ -7,12 +7,10 @@ package com.zch.hometab.modules.girl;
 
 import com.zch.baselib.base.BasePresenter;
 import com.zch.baselib.retrofit.RetrofitClient;
+import com.zch.baselib.util.JsonUtils;
 import com.zch.baselib.util.LogUtils;
-import com.zch.baselib.util.ToastUtils;
 
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
@@ -28,30 +26,22 @@ public class GirlPresenter extends BasePresenter<IGirlView> {
         super(view);
     }
 
-    public void getGirlItemData(String cid, int page) {
+    public void getTuiGirls(int page, int len) {
         RetrofitClient.getInstance()
                 .create(IGirlService.class)
-                .getGirlItemData(cid, page)
+                .getTuiGirls(page, len)
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<String>() {
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Result<TuiGirl>>() {
                     @Override
-                    public void onSubscribe(Disposable d) {
-
+                    public void accept(Result<TuiGirl> tuiGirlResult) throws Exception {
+                        LogUtils.e("info-->", JsonUtils.toJson(tuiGirlResult.data));
+                        mView.onSuccess(tuiGirlResult.data);
                     }
-
+                }, new Consumer<Throwable>() {
                     @Override
-                    public void onNext(String s) {
-                        LogUtils.e(s);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        LogUtils.e(e.getMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-
+                    public void accept(Throwable throwable) throws Exception {
+                        LogUtils.e(throwable.getMessage());
                     }
                 });
     }

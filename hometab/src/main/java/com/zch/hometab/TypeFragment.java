@@ -20,7 +20,7 @@ import java.util.List;
 import butterknife.BindView;
 
 /**
- * description
+ * 分类 Fragment
  *
  * @author zch
  * @since 2017-11-25
@@ -55,7 +55,7 @@ public class TypeFragment extends BaseAppFragment {
     }
 
     @Override
-    protected void init() {
+    protected void onLazyLoadOnce() {
         mFragmentList = new ArrayList<>();
         mType = getArguments().getString(TYPE);
         if (ResourceUtils.resToStr(mContext, R.string.girl).equals(mType)) {

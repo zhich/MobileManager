@@ -10,13 +10,13 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 /**
- * description
+ * 妹子接口定义
  *
  * @author zch
  * @since 2017-11-26
  */
 public interface IGirlService {
 
-    @GET("show.htm")
-    Observable<String> getGirlItemData(@Query("cid") String cid, @Query("pager_offset") int pager_offset);
+    @GET("https://api.tuimeizi.cn/girls")
+    Observable<Result<TuiGirl>> getTuiGirls(@Query("page") int page, @Query("len") int len);
 }

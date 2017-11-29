@@ -2,13 +2,13 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.jakewharton.butterknife'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -28,30 +28,42 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknife"
-    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.arouterCompiler"
 
-    api("com.android.support:appcompat-v7:$rootProject.supportLibraryVersion") {
+    api(rootProject.ext.dependencies.appcompat_v7) {
+        exclude module: 'support-annotations'
         exclude module: 'support-v4'
     }
-    api "com.android.support:design:$rootProject.supportLibraryVersion"
-
-    api("com.jakewharton:butterknife:$rootProject.butterknife") {
+    api rootProject.ext.dependencies.design
+    api(rootProject.ext.dependencies.butterknife) {
         exclude module: 'support-annotations'
         exclude module: 'support-compat'
         exclude module: 'support-v4'
     }
-    api "org.greenrobot:eventbus:$rootProject.eventbus"
-    api("com.alibaba:arouter-api:$rootProject.arouterApi") {
+    api(rootProject.ext.dependencies.arouter_api) {
         exclude module: 'fastjson'
         exclude module: 'support-v4'
     }
-    api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$rootProject.baseRecyclerViewAdapter"
-    api "com.google.code.gson:gson:$rootProject.ext.gson"
-    api "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroid"
-    api "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava"
-    api "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofit"
-    api "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofit"
-    api "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofit"
-    api "com.github.bumptech.glide:glide:$rootProject.ext.glide"
+    api rootProject.ext.dependencies.gson
+    api rootProject.ext.dependencies.eventbus
+    api(rootProject.ext.dependencies.rxjava2_android) {
+        exclude module: "rxjava"
+    }
+    api rootProject.ext.dependencies.rxjava2
+    api(rootProject.ext.dependencies.retrofit2) {
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+    }
+    api(rootProject.ext.dependencies.retrofit2_adapter_rxjava2) {
+        exclude module: 'rxjava'
+        exclude module: 'okhttp'
+        exclude module: 'retrofit'
+        exclude module: 'okio'
+    }
+    api rootProject.ext.dependencies.retrofit2_converter_gson
+    api(rootProject.ext.dependencies.glide) {
+        exclude module: 'gson'
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+        exclude module: 'retrofit'
+    }
 }
